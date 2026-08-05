@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI 求职职位助手</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <aside class="sidebar" aria-label="侧边栏">
+        <div class="brand">
+          <div class="brand-mark">AI</div>
+          <div>
+            <h1>求职职位助手</h1>
+            <p>职位检索 · RAG 回答 · 短期记忆</p>
+          </div>
+        </div>
+
+        <section class="panel">
+          <label for="apiEndpoint">接口地址</label>
+          <input
+            id="apiEndpoint"
+            type="url"
+            value="http://127.0.0.1:8000/job"
+            autocomplete="off"
+          />
+        </section>
+
+        <section class="panel">
+          <h2>使用建议</h2>
+          <button class="suggestion" data-question="帮我找适合 Python 和 RAG 的岗位">
+            Python + RAG 岗位
+          </button>
+          <button class="suggestion" data-question="帮我分析哪些岗位适合 AI 产品方向">
+            AI 产品方向
+          </button>
+          <button class="suggestion" data-question="帮我找薪资较高的数据分析岗位">
+            高薪数据分析
+          </button>
+        </section>
+
+        <section class="panel status-panel">
+          <h2>当前模式</h2>
+          <p>单对话模式，前端只保存本页展示记录。</p>
+          <p>长期上下文由后端 Redis 控制。</p>
+        </section>
+      </aside>
+
+      <main class="chat-layout">
+        <header class="chat-header">
+          <div>
+            <p class="eyebrow">AI Job Assistant</p>
+            <h2>职位问答</h2>
+          </div>
+          <button id="clearChat" class="ghost-button" type="button">清空界面</button>
+        </header>
+
+        <section id="chatMessages" class="chat-messages" aria-live="polite">
+          <article class="message assistant">
+            <div class="avatar">AI</div>
+            <div class="bubble">
+              <p>你好，我可以基于本地职位向量库帮你检索和分析岗位。你可以直接问：帮我找适合 Python 和 RAG 的岗位。</p>
+            </div>
+          </article>
+        </section>
+
+        <form id="chatForm" class="composer">
+          <textarea
+            id="questionInput"
+            rows="1"
+            placeholder="输入你的求职问题，Enter 发送，Shift + Enter 换行"
+            required
+          ></textarea>
+          <button id="sendButton" type="submit">发送</button>
+        </form>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
